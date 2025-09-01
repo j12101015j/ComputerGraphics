@@ -141,7 +141,6 @@ public void CGEllipse(float x, float y, float r1, float r2) {
         float by = u*u*u*p1.y + 3*u*u*t*p2.y + 3*u*t*t*p3.y + t*t*t*p4.y;
         drawPoint(round(bx), round(by), col);
     }
-
 ```
 - <img width="1239" height="658" alt="image" src="https://github.com/user-attachments/assets/751e2c88-c4b7-4eec-a5f1-1fa1720e5aa7" />
 
@@ -151,4 +150,5 @@ public void CGEllipse(float x, float y, float r1, float r2) {
 - 自由筆：mouseDragged 畫點  
 - 噴槍：隨機散點模擬  
 - 箭頭：PNG 貼圖 + tint 上色，可縮放/換色/預覽
+<img width="1244" height="1016" alt="image" src="https://github.com/user-attachments/assets/02f003e0-1fc0-4b43-b665-d9eac7e644b8" />
 
