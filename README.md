@@ -34,14 +34,117 @@
 ## 2. 圓形 (CGCircle)
 - **演算法**：Midpoint Circle Algorithm  
 - **核心概念**：八分圓對稱，判斷下一步往右或右下。
+- **程式碼**
+```java
+public void CGCircle(float x, float y, float r) {
+    // Midpoint circle (8-way symmetry)
+    int xc = round(x), yc = round(y);
+    int R  = max(0, round(r));
+    int d  = 1 - R;
+    int xi = 0, yi = R;
+    color col = penColor;
+
+    while (xi <= yi) {
+        drawPoint(xc + xi, yc + yi, col);
+        drawPoint(xc - xi, yc + yi, col);
+        drawPoint(xc + xi, yc - yi, col);
+        drawPoint(xc - xi, yc - yi, col);
+        drawPoint(xc + yi, yc + xi, col);
+        drawPoint(xc - yi, yc + xi, col);
+        drawPoint(xc + yi, yc - xi, col);
+        drawPoint(xc - yi, yc - xi, col);
+
+        xi++;
+        if (d < 0) {
+            d += (xi << 1) + 1;
+        } else {
+            yi--;
+            d += (xi << 1) - (yi << 1) + 1;
+        }
+    }
+```
+<img width="1246" height="740" alt="image" src="https://github.com/user-attachments/assets/a014aadb-1470-464d-a167-e999da4374b8" />
 
 ## 3. 橢圓 (CGEllipse)
 - **演算法**：Midpoint Ellipse Algorithm  
 - **核心概念**：分兩個區域，對稱畫四分之一橢圓。
+- **程式碼**
+```java
+public void CGEllipse(float x, float y, float r1, float r2) {
+    // Midpoint ellipse (4-way symmetry)
+    int xc = round(x), yc = round(y);
+    int rx = max(0, round(r1));
+    int ry = max(0, round(r2));
+    color col = penColor;
+
+    long rx2 = 1L * rx * rx;
+    long ry2 = 1L * ry * ry;
+
+    long xk = 0, yk = ry;
+    long px = 0;
+    long py = 2 * rx2 * yk;
+
+    // Region 1
+    long d1 = ry2 - rx2 * ry + rx2 / 4;
+    while (px < py) {
+        drawPoint(xc + (int)xk, yc + (int)yk, col);
+        drawPoint(xc - (int)xk, yc + (int)yk, col);
+        drawPoint(xc + (int)xk, yc - (int)yk, col);
+        drawPoint(xc - (int)xk, yc - (int)yk, col);
+
+        xk++;
+        px += 2 * ry2;
+        if (d1 < 0) {
+            d1 += ry2 + px;
+        } else {
+            yk--;
+            py -= 2 * rx2;
+            d1 += ry2 + px - py;
+        }
+    }
+
+    // Region 2 (use double for 0.5 terms)
+    double xd = xk, yd = yk;
+    double d2 = ry2 * (xd + 0.5) * (xd + 0.5) + rx2 * (yd - 1) * (yd - 1) - rx2 * ry2;
+    while (yk >= 0) {
+        drawPoint(xc + (int)xk, yc + (int)yk, col);
+        drawPoint(xc - (int)xk, yc + (int)yk, col);
+        drawPoint(xc + (int)xk, yc - (int)yk, col);
+        drawPoint(xc - (int)xk, yc - (int)yk, col);
+
+        yk--;
+        py -= 2 * rx2;
+        if (d2 > 0) {
+            d2 += rx2 * (1 - 2 * yk);
+        } else {
+            xk++;
+            d2 += rx2 * (1 - 2 * yk) + 2 * ry2 * xk;
+        }
+    }
+}
+```
+<img width="1240" height="717" alt="image" src="https://github.com/user-attachments/assets/e8e12fc9-78e1-4942-a77f-0cf04f2a2587" />
 
 ## 4. 曲線 (CGBezier Curve)
 - **演算法**：De Casteljau’s Algorithm  
 - **核心概念**：控制點線性插值，逐步計算曲線上的點。
+- **程式碼**
+```java
+ float L = distance(p1, p2) + distance(p2, p3) + distance(p3, p4);
+    int steps = max(24, min(1024, round(L)));
+    float dt = 1.0f / steps;
+    color col = penColor;
+
+    for (int i = 0; i <= steps; i++) {
+        float t = i * dt, u = 1 - t;
+        float bx = u*u*u*p1.x + 3*u*u*t*p2.x + 3*u*t*t*p3.x + t*t*t*p4.x;
+        float by = u*u*u*p1.y + 3*u*u*t*p2.y + 3*u*t*t*p3.y + t*t*t*p4.y;
+        drawPoint(round(bx), round(by), col);
+    }
+
+```
+- <img width="1239" height="658" alt="image" src="https://github.com/user-attachments/assets/751e2c88-c4b7-4eec-a5f1-1fa1720e5aa7" />
+
 
 ## 5. 其他功能
 - 橡皮擦：白色覆蓋，支援滾輪調整大小  
