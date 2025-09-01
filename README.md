@@ -150,7 +150,7 @@ public void CGEllipse(float x, float y, float r1, float r2) {
 - 自由筆：mouseDragged 畫點  
 - 噴槍：隨機散點模擬  
 - 箭頭：PNG 貼圖 + tint 上色，可縮放/換色/預覽
-<img width="1244" height="1016" alt="image" src="https://github.com/user-attachments/assets/02f003e0-1fc0-4b43-b665-d9eac7e644b8" />
+<img width="1243" height="1013" alt="image" src="https://github.com/user-attachments/assets/8fc03d6b-8f26-480a-bb55-380b231efcb2" />
 
 ### 工具
 - ChatGPT 5.0
