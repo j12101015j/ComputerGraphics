@@ -147,8 +147,9 @@ public void CGEllipse(float x, float y, float r1, float r2) {
 
 ## 5. 其他功能
 - 橡皮擦：白色覆蓋，支援滾輪調整大小  
-- 自由筆：mouseDragged 畫點  
-- 噴槍：隨機散點模擬  
+- 自由筆：mouseDragged 畫點
+- 一鍵清除
+- 噴槍：隨機散點模擬，可縮放/換色
 - 箭頭：PNG 貼圖 + tint 上色，可縮放/換色/預覽
 <img width="1243" height="1013" alt="image" src="https://github.com/user-attachments/assets/8fc03d6b-8f26-480a-bb55-380b231efcb2" />
 
