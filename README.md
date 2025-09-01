@@ -1,20 +1,23 @@
-# 電腦圖學 HW1 作業說明
+# ComputerGraphics 計算機圖學 HW1 作業說明
+
+## 專案說明 
+### 實作五個計算機圖學演算法繪製基本幾何圖形，避免使用內建繪圖函數，並加上簡易調色盤、上下左右印章繪製。
 
 本專案的直線、圓形、橢圓、曲線等繪製功能，**並未直接呼叫 Processing 內建的圖形函式**，而是依據經典演算法以逐像素方式實作。
 
-## 1. 直線 (Line)
+## 1. 直線 (CGLine)
 - **演算法**：Bresenham's Line Algorithm  
 - **核心概念**：利用誤差項決定畫哪個像素，只需整數加減。
 
-## 2. 圓形 (Circle)
+## 2. 圓形 (CGCircle)
 - **演算法**：Midpoint Circle Algorithm  
 - **核心概念**：八分圓對稱，判斷下一步往右或右下。
 
-## 3. 橢圓 (Ellipse)
+## 3. 橢圓 (CGEllipse)
 - **演算法**：Midpoint Ellipse Algorithm  
 - **核心概念**：分兩個區域，對稱畫四分之一橢圓。
 
-## 4. 曲線 (Bezier Curve)
+## 4. 曲線 (CGBezier Curve)
 - **演算法**：De Casteljau’s Algorithm  
 - **核心概念**：控制點線性插值，逐步計算曲線上的點。
 
